@@ -3,10 +3,8 @@
 Improve AI visibility research with Parse. Find how brands appear across AI-search prompts, citation sources, niches, and competitors, then turn that data into marketer-ready actions. Use the server to discover relevant brands, audit a brand's visibility profile, compare competitors, inspect high-intent prompts, identify source opportunities, and build 30-day visibility plans. Parse returns concise research briefs, fetchable result IDs, public score summaries, top prompts, top citation domains, related products, and dataset freshness signals so marketers can move from raw AI visibility data to prioritized SEO, content, PR, and listing work.
 
 Hosted server:
-
-```text
 https://mcp.parse.gl/mcp
-```
+
 
 ## What Is Included
 
