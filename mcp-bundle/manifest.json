@@ -1,0 +1,17 @@
+{
+  "name": "Parse MCP",
+  "version": "1.0.0",
+  "description": "Connect Parse public AI visibility data to your MCP-capable assistant.",
+  "author": {
+    "name": "Parse",
+    "url": "https://parse.gl"
+  },
+  "privacy_policies": ["https://parse.gl/privacy"],
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "env": {}
+    }
+  }
+}

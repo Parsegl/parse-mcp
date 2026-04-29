@@ -1,0 +1,56 @@
+name = "parse-public-mcp"
+main = "src/index.ts"
+compatibility_date = "2026-04-29"
+account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
+workers_dev = false
+
+routes = [
+  { pattern = "mcp.example.com/*", zone_name = "example.com" },
+]
+
+[vars]
+PARSE_API_BASE_URL = "https://parse.gl"
+MCP_VERSION = "1.0.0"
+MCP_USER_AGENT = "parse-mcp-worker/1.0 (+https://parse.gl/mcp)"
+
+[[kv_namespaces]]
+binding = "MCP_USAGE"
+id = "YOUR_MCP_USAGE_KV_NAMESPACE_ID"
+
+[[kv_namespaces]]
+binding = "MCP_RATELIMIT"
+id = "YOUR_MCP_RATELIMIT_KV_NAMESPACE_ID"
+
+[[unsafe.bindings]]
+name = "MCP_BURST"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 10, period = 10 }
+
+[env.staging]
+name = "parse-public-mcp-staging"
+workers_dev = false
+
+routes = [
+  { pattern = "mcp-staging.example.com/*", zone_name = "example.com" },
+]
+
+[env.staging.vars]
+PARSE_API_BASE_URL = "https://parse.gl"
+MCP_VERSION = "1.0.0"
+MCP_USER_AGENT = "parse-mcp-worker/1.0-staging (+https://parse.gl/mcp)"
+
+[[env.staging.kv_namespaces]]
+binding = "MCP_USAGE"
+id = "YOUR_STAGING_MCP_USAGE_KV_NAMESPACE_ID"
+
+[[env.staging.kv_namespaces]]
+binding = "MCP_RATELIMIT"
+id = "YOUR_STAGING_MCP_RATELIMIT_KV_NAMESPACE_ID"
+
+[[env.staging.unsafe.bindings]]
+name = "MCP_BURST"
+type = "ratelimit"
+namespace_id = "1002"
+simple = { limit = 10, period = 10 }
+

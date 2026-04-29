@@ -1,0 +1,9 @@
+{
+  "name": "parse-gl-mcp-bundle",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "mcp-remote": "0.1.38"
+  }
+}

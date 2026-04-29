@@ -1,0 +1,21 @@
+{
+  "name": "parse-gl-mcp",
+  "version": "1.0.0",
+  "description": "Connect Parse public AI visibility data to MCP-capable clients.",
+  "type": "module",
+  "bin": {
+    "parse-gl-mcp": "bin/parse-gl-mcp.js"
+  },
+  "scripts": {
+    "test": "node test/verify-package.mjs"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "mcpName": "gl.parse/mcp",
+  "dependencies": {
+    "mcp-remote": "0.1.38"
+  },
+  "license": "MIT"
+}

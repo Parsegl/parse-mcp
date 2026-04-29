@@ -1,0 +1,13 @@
+{
+  "name": "parse-mcp-public",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public Parse MCP server, npm shim, and MCPB bundle metadata.",
+  "type": "module",
+  "scripts": {
+    "test": "npm --prefix mcp-worker test && npm --prefix npm test",
+    "typecheck": "npm --prefix mcp-worker run typecheck"
+  },
+  "license": "MIT"
+}
+
