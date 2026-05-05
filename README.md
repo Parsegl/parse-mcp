@@ -2,9 +2,20 @@
 
 Improve AI visibility research with Parse. Find how brands appear across AI-search prompts, citation sources, niches, and competitors, then turn that data into marketer-ready actions. Use the server to discover relevant brands, audit a brand's visibility profile, compare competitors, inspect high-intent prompts, identify source opportunities, and build 30-day visibility plans. Parse returns concise research briefs, fetchable result IDs, public score summaries, top prompts, top citation domains, related products, and dataset freshness signals so marketers can move from raw AI visibility data to prioritized SEO, content, PR, and listing work.
 
-Hosted server:
-https://mcp.parse.gl/mcp
+Hosted MCP endpoint:
+`https://mcp.parse.gl/mcp`
 
+## Install
+
+The easiest install path is the published npm shim:
+
+```bash
+npx -y -p @parse-gl/mcp parse-mcp
+```
+
+That command starts a local stdio bridge which proxies to the hosted Parse MCP server at `https://mcp.parse.gl/mcp`.
+
+For LLM/agent-focused setup notes, see [llms-install.md](./llms-install.md).
 
 ## What Is Included
 
@@ -42,7 +53,22 @@ https://mcp.parse.gl/mcp
   "mcpServers": {
     "parse": {
       "command": "npx",
-      "args": ["parse-gl-mcp"]
+      "args": ["-y", "-p", "@parse-gl/mcp", "parse-mcp"]
+    }
+  }
+}
+```
+
+## Use With Remote-HTTP Clients
+
+Clients that support hosted MCP endpoints directly can connect to:
+
+```json
+{
+  "mcpServers": {
+    "parse": {
+      "transport": "http",
+      "url": "https://mcp.parse.gl/mcp"
     }
   }
 }
@@ -54,7 +80,7 @@ https://mcp.parse.gl/mcp
 cd npm
 npm ci
 npm test
-npx parse-gl-mcp
+npx -y -p @parse-gl/mcp parse-mcp
 ```
 
 ## Develop The Worker
@@ -82,4 +108,3 @@ Required worker secrets:
 - Origin validation is strict for browser clients; missing Origin is allowed for native MCP clients.
 - Upstream verification and bypass secrets are sent only as HTTP headers.
 - This public repository intentionally excludes `.env`, `.wrangler`, `.claude`, and `node_modules`.
-
