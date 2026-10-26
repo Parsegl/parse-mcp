@@ -7,5 +7,13 @@
     "name": "Parse Inc",
     "url": "https://parse.gl"
   },
-  "homepage": "https://parse.gl"
+  "homepage": "https://parse.gl",
+  "keywords": [
+    "ai-visibility",
+    "brand-research",
+    "seo",
+    "competitor-research"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/Parsegl/parse-mcp"
 }

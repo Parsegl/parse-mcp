@@ -32,6 +32,6 @@ The root manifests connect clients to the hosted service without running this re
 
 ## Privacy and support
 
-[Privacy policy](https://parse.gl/privacy) · [Terms](https://parse.gl/terms) · [Documentation and support](https://parse.gl/mcp)
+[Privacy policy](https://parse.gl/privacy) · [Terms](https://parse.gl/terms) · [Documentation](https://parse.gl/mcp) · [Support](mailto:dimitry@soar.sh)
 
 Parse records bounded MCP request information for operational diagnostics as described in its privacy policy. Do not put credentials or unrelated private information into tool arguments.
