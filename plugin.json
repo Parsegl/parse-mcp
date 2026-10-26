@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "parse",
+  "version": "1.0.0",
+  "description": "Free AI visibility lookups for any brand, with sources, competitors and measurement dates.",
+  "author": {
+    "name": "Parse Inc",
+    "url": "https://parse.gl"
+  },
+  "homepage": "https://parse.gl"
+}

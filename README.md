@@ -1,110 +1,37 @@
 # Parse MCP
 
-Improve AI visibility research with Parse. Find how brands appear across AI-search prompts, citation sources, niches, and competitors, then turn that data into marketer-ready actions. Use the server to discover relevant brands, audit a brand's visibility profile, compare competitors, inspect high-intent prompts, identify source opportunities, and build 30-day visibility plans. Parse returns concise research briefs, fetchable result IDs, public score summaries, top prompts, top citation domains, related products, and dataset freshness signals so marketers can move from raw AI visibility data to prioritized SEO, content, PR, and listing work.
+[Parse](https://parse.gl) lets your assistant look up how AI sees a brand, compare competitors, and explore buyer topics and cited sources. Public lookups are free and require no account. Responses include measurement dates and coverage; an unmeasured or unindexed brand is not evidence of zero visibility.
 
-Hosted MCP endpoint:
-`https://mcp.parse.gl/mcp`
+## Connect
 
-## Install
+The hosted Streamable HTTP endpoint is `https://mcp.parse.gl/mcp`.
 
-The easiest install path is the published npm shim:
+- **Cursor and other Agent Plugins clients:** install this repository as a plugin. The root `plugin.json` and `mcp.json` use the Agent Plugins standard.
+- **Gemini CLI:** run `gemini extensions install https://github.com/Parsegl/parse-mcp`.
+- **Claude:** add the endpoint as a custom connector for public lookups. Authenticated Claude workspace access is not yet verified; the October 26, 2026 CIMD sign-in check returned `invalid_client`.
+- **Other remote MCP clients:** add the endpoint using the client's Streamable HTTP configuration.
+- **Clients requiring stdio:** run `npx -y -p @parse-gl/mcp parse-mcp` to bridge to the hosted service.
 
-```bash
-npx -y -p @parse-gl/mcp parse-mcp
-```
+These installation paths do not imply marketplace approval. [Setup and current tool reference](https://parse.gl/mcp).
 
-That command starts a local stdio bridge which proxies to the hosted Parse MCP server at `https://mcp.parse.gl/mcp`.
+## Try it
 
-For LLM/agent-focused setup notes, see [llms-install.md](./llms-install.md).
+- “How does AI see stripe.com? Include sources and measurement dates.”
+- “Compare Stripe and Adyen using matching markets and date windows.”
+- “Find buyer topics related to payment APIs.”
 
-## What Is Included
+Start with `parse_check_brand` for a named brand or domain, or `parse_search` to discover brands, topics and markets. Follow returned identifiers into `parse_get_brand`, `parse_get_topic` and `parse_get_question`. `search` and `fetch` are compatibility aliases.
 
-- `mcp-worker/`: Cloudflare Worker source for the hosted Streamable HTTP MCP server.
-- `npm/`: `parse-gl-mcp` npm shim that runs the hosted server through package-local `mcp-remote`.
-- `mcp-bundle/`: MCPB bundle metadata and node entry point.
+## Workspace access
 
-## Tools
+The same endpoint also advertises workspace tools. These require Parse sign-in and selected-workspace membership, with plan-based access. Writes require write consent and workspace administrator opt-in. The service can save drafts and record confirmed task changes; it does not send email. Billing, membership and connection permissions stay in Parse. OAuth compatibility must be verified separately for each client; public lookup support does not establish authenticated support.
 
-- `parse_search`: Search brands, organic AI prompts, niches, and citation sources.
-- `parse_get_brand`: Fetch a marketer-readable AI visibility brief for a brand.
-- `parse_get_prompt`: Fetch one public organic prompt.
-- `parse_get_stats`: Summarize public Parse dataset scale and freshness.
-- `search` and `fetch`: Compatibility aliases for clients that expect those names.
+## Repository contents
 
-## Resources
+The root manifests connect clients to the hosted service without running this repository's server code. `mcp-worker/`, `npm/` and `mcp-bundle/` contain earlier worker, shim and desktop-bundle sources; they are not a complete snapshot of the currently deployed service. The published stdio package is `@parse-gl/mcp`, not the name of the historical `npm/` source package.
 
-- `parse://showcase-brands`
-- `parse://niches`
-- `parse://glossary`
+## Privacy and support
 
-## Prompts
+[Privacy policy](https://parse.gl/privacy) · [Terms](https://parse.gl/terms) · [Documentation and support](https://parse.gl/mcp)
 
-- `compare-brands`
-- `audit-my-brand`
-- `industry-leaders`
-- `source-opportunities`
-- `prompt-set-planner`
-- `ai-visibility-30-day-plan`
-
-## Use With Claude Desktop
-
-```json
-{
-  "mcpServers": {
-    "parse": {
-      "command": "npx",
-      "args": ["-y", "-p", "@parse-gl/mcp", "parse-mcp"]
-    }
-  }
-}
-```
-
-## Use With Remote-HTTP Clients
-
-Clients that support hosted MCP endpoints directly can connect to:
-
-```json
-{
-  "mcpServers": {
-    "parse": {
-      "transport": "http",
-      "url": "https://mcp.parse.gl/mcp"
-    }
-  }
-}
-```
-
-## Run The NPM Shim Locally
-
-```bash
-cd npm
-npm ci
-npm test
-npx -y -p @parse-gl/mcp parse-mcp
-```
-
-## Develop The Worker
-
-```bash
-cd mcp-worker
-npm ci
-npm test
-npm run typecheck
-```
-
-Copy `mcp-worker/wrangler.example.toml` to `mcp-worker/wrangler.toml` and fill in your own Cloudflare account, route, and KV namespace IDs. Store secrets with `wrangler secret put`; do not commit them.
-
-Required worker secrets:
-
-- `WORKER_HASH_SALT`
-- `CF_ORIGIN_VERIFY_SECRET`, if your Parse origin requires it
-- `VERCEL_AUTOMATION_BYPASS_SECRET`, if your Vercel project requires it
-- `MCP_INTERNAL_SECRET`, if enabling the internal usage endpoint
-
-## Security Notes
-
-- Raw IP addresses are hashed at the worker boundary before rate limiting or telemetry.
-- User-Agent values are reduced to a client-family label before persistence.
-- Origin validation is strict for browser clients; missing Origin is allowed for native MCP clients.
-- Upstream verification and bypass secrets are sent only as HTTP headers.
-- This public repository intentionally excludes `.env`, `.wrangler`, `.claude`, and `node_modules`.
+Parse records bounded MCP request information for operational diagnostics as described in its privacy policy. Do not put credentials or unrelated private information into tool arguments.
