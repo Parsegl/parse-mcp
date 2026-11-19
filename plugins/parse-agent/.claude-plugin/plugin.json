@@ -1,7 +1,7 @@
 {
   "name": "parse-agent",
   "version": "0.2.1",
-  "description": "Parse for agents: how ChatGPT Search and Google AI Mode name, recommend and cite brands, the pages they cite, what changed, and live asks and fetches, through 16 tools at agent.parse.gl.",
+  "description": "Research how ChatGPT Search and Google AI Mode recommend brands, compare competitors, and find the pages behind their answers.",
   "author": {
     "name": "Parse",
     "url": "https://parse.gl"
