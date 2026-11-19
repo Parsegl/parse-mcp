@@ -1,0 +1,13 @@
+{
+  "name": "parse-agent",
+  "version": "0.2.1",
+  "description": "Research how ChatGPT Search and Google AI Mode recommend brands, compare competitors, and find the pages behind their answers.",
+  "author": {
+    "name": "Parse",
+    "url": "https://parse.gl"
+  },
+  "homepage": "https://agent.parse.gl",
+  "license": "MIT",
+  "icon": "./assets/icon.png",
+  "privacyPolicyUrl": "https://parse.gl/privacy"
+}

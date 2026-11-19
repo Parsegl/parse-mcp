@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "parse-agent": {
+      "type": "http",
+      "url": "https://agent.parse.gl/mcp"
+    }
+  }
+}
